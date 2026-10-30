@@ -2,6 +2,8 @@
 
 A dashboard page built for the **AccuKnox Front-End Trainee assignment**. Categories and widgets are generated from a JSON file; users can add, remove and search widgets, and the layout is saved in the browser.
 
+Every default widget is populated with clearly labeled sample data; the dashboard does not connect to live cloud or security services.
+
 **Live demo:** Not deployed yet — follow the [deployment steps](#deploy) below.  ·  **Stack:** React 18 · TypeScript · Redux Toolkit · Vite · Vitest
 
 ## Assignment checklist
@@ -28,7 +30,7 @@ npm run dev        # start the dev server  ->  http://localhost:5173
 Other commands:
 
 ```bash
-npm test           # 31 unit and UI tests (Vitest + Testing Library)
+npm test           # 32 unit and UI tests (Vitest + Testing Library)
 npm run lint       # ESLint
 npm run typecheck  # TypeScript, strict mode
 npm run build      # type-check + production build into dist/
@@ -96,7 +98,7 @@ flowchart LR
 
 ## Tests
 
-31 tests cover the reducer logic, JSON schema validation, search, persistence (including corrupted data) and the main user flows through the real UI: remove and undo, open the drawer on the right tab, create a widget, tick and untick, cancel and Esc, cross-category search, form validation, deleting a custom widget, the top-bar search and the time-range dropdown.
+32 tests cover the reducer logic, JSON schema validation, search, persistence (including corrupted data) and the main user flows through the real UI: populated sample widgets, remove and undo, open the drawer on the right tab, create a widget, tick and untick, cancel and Esc, cross-category search, form validation, deleting a custom widget, the top-bar search and the time-range dropdown.
 
 ## Project structure
 

@@ -34,16 +34,29 @@
         {
           "id": "cspm-compliance-score",
           "name": "Compliance Score",
-          "type": "text",
-          "visible": false,
-          "text": "Overall compliance score against CIS, NIST and PCI-DSS benchmarks. Sample text for the assignment."
+          "type": "donut",
+          "visible": true,
+          "text": "Sample benchmark results across CIS, NIST and PCI-DSS controls. 74% of checks are passing.",
+          "segments": [
+            { "label": "Compliant", "value": 74, "color": "#1FA463" },
+            { "label": "In progress", "value": 18, "color": "#F5C542" },
+            { "label": "Needs attention", "value": 8, "color": "#C81E1E" }
+          ]
         },
         {
           "id": "cspm-top-misconfigurations",
           "name": "Top Misconfigurations",
-          "type": "text",
-          "visible": false,
-          "text": "The most frequent cloud misconfigurations, ranked by affected resources. Sample text for the assignment."
+          "type": "stackedBar",
+          "visible": true,
+          "text": "Sample count of affected resources grouped by the most common configuration issues.",
+          "headline": { "value": 86, "label": "Affected Resources" },
+          "segments": [
+            { "label": "Public storage", "value": 24, "color": "#C81E1E" },
+            { "label": "Open security groups", "value": 20, "color": "#E4572E" },
+            { "label": "Unencrypted disks", "value": 17, "color": "#F0932B" },
+            { "label": "Excessive permissions", "value": 14, "color": "#F5C542" },
+            { "label": "Logging disabled", "value": 11, "color": "#4F6FF0" }
+          ]
         }
       ]
     },
@@ -55,30 +68,56 @@
         {
           "id": "cwpp-namespace-alerts",
           "name": "Top 5 Namespace Specific Alerts",
-          "type": "empty",
+          "type": "stackedBar",
           "visible": true,
-          "text": "The five Kubernetes namespaces that raised the most alerts."
+          "text": "Sample runtime alerts across the five namespaces with the most activity.",
+          "headline": { "value": 129, "label": "Runtime Alerts" },
+          "segments": [
+            { "label": "payments", "value": 38, "color": "#4F6FF0" },
+            { "label": "production", "value": 32, "color": "#1FA463" },
+            { "label": "platform", "value": 25, "color": "#F0932B" },
+            { "label": "staging", "value": 19, "color": "#E4572E" },
+            { "label": "monitoring", "value": 15, "color": "#8B5CF6" }
+          ]
         },
         {
           "id": "cwpp-workload-alerts",
           "name": "Workload Alerts",
-          "type": "empty",
+          "type": "stackedBar",
           "visible": true,
-          "text": "Runtime alerts raised by workloads over the selected time range."
+          "text": "Sample runtime alerts for workloads grouped by severity over the selected time range.",
+          "headline": { "value": 84, "label": "Workload Alerts" },
+          "segments": [
+            { "label": "Critical", "value": 7, "color": "#7F1D1D" },
+            { "label": "High", "value": 18, "color": "#DC2626" },
+            { "label": "Medium", "value": 31, "color": "#F0932B" },
+            { "label": "Low", "value": 28, "color": "#4F6FF0" }
+          ]
         },
         {
           "id": "cwpp-runtime-violations",
           "name": "Runtime Policy Violations",
-          "type": "text",
-          "visible": false,
-          "text": "Policy violations detected at runtime, such as unexpected processes or network connections. Sample text."
+          "type": "stackedBar",
+          "visible": true,
+          "text": "Sample policy violations detected at runtime, grouped by rule.",
+          "headline": { "value": 24, "label": "Policy Violations" },
+          "segments": [
+            { "label": "Unexpected process", "value": 8, "color": "#C81E1E" },
+            { "label": "Privilege escalation", "value": 6, "color": "#E4572E" },
+            { "label": "Unapproved network", "value": 6, "color": "#F0932B" },
+            { "label": "File integrity", "value": 4, "color": "#4F6FF0" }
+          ]
         },
         {
           "id": "cwpp-node-posture",
           "name": "Node Posture",
-          "type": "text",
-          "visible": false,
-          "text": "Hardening status of cluster nodes. Sample text for the assignment."
+          "type": "donut",
+          "visible": true,
+          "text": "Sample hardening status for 48 cluster nodes. Review nodes that need attention.",
+          "segments": [
+            { "label": "Hardened", "value": 42, "color": "#1FA463" },
+            { "label": "Needs attention", "value": 6, "color": "#F0932B" }
+          ]
         }
       ]
     },
@@ -120,9 +159,13 @@
         {
           "id": "image-registry-coverage",
           "name": "Registry Coverage",
-          "type": "text",
-          "visible": false,
-          "text": "Share of connected registries that have been scanned in the selected time range. Sample text."
+          "type": "donut",
+          "visible": true,
+          "text": "Sample scan coverage across 10 connected container registries.",
+          "segments": [
+            { "label": "Scanned", "value": 8, "color": "#1FA463" },
+            { "label": "Not scanned", "value": 2, "color": "#DCE4FF" }
+          ]
         }
       ]
     },
@@ -146,9 +189,16 @@
         {
           "id": "ticket-mttr",
           "name": "Mean Time To Resolve",
-          "type": "text",
-          "visible": false,
-          "text": "Average time taken to resolve a security ticket. Sample text for the assignment."
+          "type": "stackedBar",
+          "visible": true,
+          "text": "Sample resolution-time distribution for 48 security tickets.",
+          "headline": { "value": "4.2h", "label": "Average Resolution Time" },
+          "segments": [
+            { "label": "Under 2 hours", "value": 16, "color": "#1FA463" },
+            { "label": "2–8 hours", "value": 18, "color": "#4F6FF0" },
+            { "label": "8–24 hours", "value": 10, "color": "#F0932B" },
+            { "label": "Over 24 hours", "value": 4, "color": "#C81E1E" }
+          ]
         }
       ]
     }

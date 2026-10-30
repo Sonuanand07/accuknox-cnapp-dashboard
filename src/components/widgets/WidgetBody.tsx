@@ -15,11 +15,12 @@ function NoData() {
 /** Chooses the right renderer for a widget's `type`. Unknown/empty data falls back to the empty state. */
 export function WidgetBody({ widget }: { widget: Widget }) {
   const hasData = !!widget.segments && widget.segments.some((s) => s.value > 0);
+  const description = <p className="widget__text widget__description">{widget.text}</p>;
   switch (widget.type) {
     case 'donut':
-      return hasData ? <DonutChart segments={widget.segments!} /> : <NoData />;
+      return hasData ? <>{description}<DonutChart segments={widget.segments!} /></> : <NoData />;
     case 'stackedBar':
-      return hasData ? <StackedBar segments={widget.segments!} headline={widget.headline} /> : <NoData />;
+      return hasData ? <>{description}<StackedBar segments={widget.segments!} headline={widget.headline} /></> : <NoData />;
     case 'empty':
       return <NoData />;
     case 'text':

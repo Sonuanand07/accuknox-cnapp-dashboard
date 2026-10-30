@@ -21,8 +21,25 @@ describe('Dashboard', () => {
     }
     expect(widgetHeading('Cloud Accounts')).toBeInTheDocument();
     expect(widgetHeading('Image Risk Assessment')).toBeInTheDocument();
-    expect(screen.getAllByText('No Graph data available!')).toHaveLength(2);
-    expect(widgetHeading('Compliance Score')).not.toBeInTheDocument();
+    for (const name of [
+      'Cloud Accounts',
+      'Cloud Account Risk Assessment',
+      'Compliance Score',
+      'Top Misconfigurations',
+      'Top 5 Namespace Specific Alerts',
+      'Workload Alerts',
+      'Runtime Policy Violations',
+      'Node Posture',
+      'Image Risk Assessment',
+      'Image Security Issues',
+      'Registry Coverage',
+      'Tickets by Status',
+      'Mean Time To Resolve',
+    ]) {
+      expect(widgetHeading(name)).toBeInTheDocument();
+    }
+    expect(screen.queryByText('No Graph data available!')).not.toBeInTheDocument();
+    expect(screen.getByText(/74% of checks are passing/)).toBeInTheDocument();
     expect(screen.getByText('Connected (2)')).toBeInTheDocument();
     expect(screen.getByText('1470')).toBeInTheDocument();
   });
@@ -60,15 +77,17 @@ describe('Add Widget drawer', () => {
     expect(cwpp.getByText('Custom')).toBeInTheDocument();
   });
 
-  it('adds an existing library widget by ticking it, and removes one by unticking it', async () => {
+  it('removes a visible widget from the drawer and can add it back', async () => {
     const { user } = setup();
     await user.click(screen.getByRole('button', { name: 'Add Widget' }));
-    await user.click(screen.getByRole('checkbox', { name: /Compliance Score/ }));
     await user.click(screen.getByRole('checkbox', { name: /^Cloud Accounts/ }));
-    expect(screen.getByText('2 pending changes')).toBeInTheDocument();
+    expect(screen.getByText('1 pending change')).toBeInTheDocument();
     await user.click(screen.getByRole('button', { name: 'Confirm' }));
-    expect(widgetHeading('Compliance Score')).toBeInTheDocument();
     expect(widgetHeading('Cloud Accounts')).not.toBeInTheDocument();
+    await user.click(screen.getByRole('button', { name: 'Add Widget' }));
+    await user.click(screen.getByRole('checkbox', { name: /^Cloud Accounts/ }));
+    await user.click(screen.getByRole('button', { name: 'Confirm' }));
+    expect(widgetHeading('Cloud Accounts')).toBeInTheDocument();
   });
 
   it('discards the draft on Cancel and closes on Escape', async () => {
@@ -76,18 +95,20 @@ describe('Add Widget drawer', () => {
     await user.click(screen.getByRole('button', { name: 'Add Widget' }));
     await user.click(screen.getByRole('checkbox', { name: /Compliance Score/ }));
     await user.click(screen.getByRole('button', { name: 'Cancel' }));
-    expect(widgetHeading('Compliance Score')).not.toBeInTheDocument();
+    expect(widgetHeading('Compliance Score')).toBeInTheDocument();
     await user.click(screen.getByRole('button', { name: 'Add Widget' }));
     expect(screen.getByRole('dialog')).toBeInTheDocument();
     await user.keyboard('{Escape}');
     expect(screen.queryByRole('dialog')).not.toBeInTheDocument();
+    expect(widgetHeading('Compliance Score')).toBeInTheDocument();
   });
 
   it('searches across ALL widgets, not just the active tab', async () => {
     const { user } = setup();
     await user.click(screen.getByRole('button', { name: 'Add Widget' }));
     await user.type(screen.getByRole('searchbox', { name: 'Search all widgets' }), 'runtime');
-    expect(screen.getByText('2 results across all categories')).toBeInTheDocument();
+    expect(screen.getByText('3 results across all categories')).toBeInTheDocument();
+    expect(screen.getByRole('checkbox', { name: /Top 5 Namespace Specific Alerts/ })).toBeInTheDocument();
     expect(screen.getByRole('checkbox', { name: /Runtime Policy Violations/ })).toBeInTheDocument();
     expect(screen.getByRole('checkbox', { name: /Workload Alerts/ })).toBeInTheDocument();
     expect(screen.queryByRole('checkbox', { name: /Compliance Score/ })).not.toBeInTheDocument();

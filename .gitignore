@@ -8,3 +8,4 @@ coverage
 .env.*
 !.env.example
 Assignment For Frontend Trainees (1).pdf
+docs/SUBMISSION_GUIDE.md

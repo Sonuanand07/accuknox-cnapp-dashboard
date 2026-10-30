@@ -9,11 +9,27 @@ const visibleIds = (state: DashboardState, categoryId: string) =>
   state.config.categories.find((c) => c.id === categoryId)!.widgets.filter((w) => w.visible).map((w) => w.id);
 
 describe('dashboardSlice', () => {
-  it('starts from the bundled JSON: categories with their default visible widgets', () => {
+  it('starts from the bundled JSON with every sample widget visible', () => {
     const state = createInitialDashboardState();
     expect(state.config.categories.map((c) => c.id)).toEqual(['cspm', 'cwpp', 'image', 'ticket']);
-    expect(visibleIds(state, 'cspm')).toEqual(['cspm-cloud-accounts', 'cspm-risk-assessment']);
-    expect(visibleIds(state, 'cwpp')).toEqual(['cwpp-namespace-alerts', 'cwpp-workload-alerts']);
+    expect(visibleIds(state, 'cspm')).toEqual([
+      'cspm-cloud-accounts',
+      'cspm-risk-assessment',
+      'cspm-compliance-score',
+      'cspm-top-misconfigurations',
+    ]);
+    expect(visibleIds(state, 'cwpp')).toEqual([
+      'cwpp-namespace-alerts',
+      'cwpp-workload-alerts',
+      'cwpp-runtime-violations',
+      'cwpp-node-posture',
+    ]);
+    expect(visibleIds(state, 'image')).toEqual([
+      'image-risk-assessment',
+      'image-security-issues',
+      'image-registry-coverage',
+    ]);
+    expect(visibleIds(state, 'ticket')).toEqual(['ticket-by-status', 'ticket-mttr']);
   });
 
   it('addWidget appends a trimmed, visible custom text widget to the right category', () => {
@@ -38,7 +54,11 @@ describe('dashboardSlice', () => {
     const ref = { categoryId: 'cspm', widgetId: 'cspm-cloud-accounts' };
     const removed = reducer(createInitialDashboardState(), removeWidget(ref));
     expect(find(removed, 'cspm', 'cspm-cloud-accounts')?.visible).toBe(false);
-    expect(visibleIds(removed, 'cspm')).toEqual(['cspm-risk-assessment']);
+    expect(visibleIds(removed, 'cspm')).toEqual([
+      'cspm-risk-assessment',
+      'cspm-compliance-score',
+      'cspm-top-misconfigurations',
+    ]);
     const restored = reducer(removed, restoreWidget(ref));
     expect(find(restored, 'cspm', 'cspm-cloud-accounts')?.visible).toBe(true);
   });

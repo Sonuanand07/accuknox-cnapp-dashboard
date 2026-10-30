@@ -8,6 +8,18 @@ describe('validateConfig', () => {
     expect(validateConfig(clone()).ok).toBe(true);
   });
 
+  it('starts with sample data visible for every widget and no empty placeholders', () => {
+    const config = clone();
+    type SampleWidget = { visible: boolean; type: string; segments?: Array<{ value: number }> };
+    const categories = config.categories as Array<{ widgets: SampleWidget[] }>;
+    const widgets = categories.flatMap((category) => category.widgets);
+    expect(widgets.length).toBe(13);
+    expect(widgets.every((widget) => widget.visible)).toBe(true);
+    expect(widgets.every((widget) => widget.type !== 'empty')).toBe(true);
+    expect(widgets.filter((widget) => widget.type === 'donut' || widget.type === 'stackedBar')
+      .every((widget) => widget.segments?.some((segment) => segment.value > 0))).toBe(true);
+  });
+
   it('rejects non-objects and empty category lists', () => {
     expect(validateConfig(null).ok).toBe(false);
     expect(validateConfig([]).ok).toBe(false);
