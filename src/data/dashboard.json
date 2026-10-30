@@ -1,0 +1,156 @@
+{
+  "version": 1,
+  "title": "CNAPP Dashboard",
+  "categories": [
+    {
+      "id": "cspm",
+      "title": "CSPM Executive Dashboard",
+      "tabLabel": "CSPM",
+      "widgets": [
+        {
+          "id": "cspm-cloud-accounts",
+          "name": "Cloud Accounts",
+          "type": "donut",
+          "visible": true,
+          "text": "Cloud accounts that are connected to the platform versus those that still need onboarding.",
+          "segments": [
+            { "label": "Connected", "value": 2, "color": "#4F6FF0" },
+            { "label": "Not Connected", "value": 2, "color": "#DCE4FF" }
+          ]
+        },
+        {
+          "id": "cspm-risk-assessment",
+          "name": "Cloud Account Risk Assessment",
+          "type": "donut",
+          "visible": true,
+          "text": "Posture checks across all connected cloud accounts, grouped by result.",
+          "segments": [
+            { "label": "Failed", "value": 1689, "color": "#C81E1E" },
+            { "label": "Warning", "value": 681, "color": "#F5C542" },
+            { "label": "Not available", "value": 36, "color": "#BDBDBD" },
+            { "label": "Passed", "value": 7253, "color": "#1FA463" }
+          ]
+        },
+        {
+          "id": "cspm-compliance-score",
+          "name": "Compliance Score",
+          "type": "text",
+          "visible": false,
+          "text": "Overall compliance score against CIS, NIST and PCI-DSS benchmarks. Sample text for the assignment."
+        },
+        {
+          "id": "cspm-top-misconfigurations",
+          "name": "Top Misconfigurations",
+          "type": "text",
+          "visible": false,
+          "text": "The most frequent cloud misconfigurations, ranked by affected resources. Sample text for the assignment."
+        }
+      ]
+    },
+    {
+      "id": "cwpp",
+      "title": "CWPP Dashboard",
+      "tabLabel": "CWPP",
+      "widgets": [
+        {
+          "id": "cwpp-namespace-alerts",
+          "name": "Top 5 Namespace Specific Alerts",
+          "type": "empty",
+          "visible": true,
+          "text": "The five Kubernetes namespaces that raised the most alerts."
+        },
+        {
+          "id": "cwpp-workload-alerts",
+          "name": "Workload Alerts",
+          "type": "empty",
+          "visible": true,
+          "text": "Runtime alerts raised by workloads over the selected time range."
+        },
+        {
+          "id": "cwpp-runtime-violations",
+          "name": "Runtime Policy Violations",
+          "type": "text",
+          "visible": false,
+          "text": "Policy violations detected at runtime, such as unexpected processes or network connections. Sample text."
+        },
+        {
+          "id": "cwpp-node-posture",
+          "name": "Node Posture",
+          "type": "text",
+          "visible": false,
+          "text": "Hardening status of cluster nodes. Sample text for the assignment."
+        }
+      ]
+    },
+    {
+      "id": "image",
+      "title": "Registry Scan",
+      "tabLabel": "Image",
+      "widgets": [
+        {
+          "id": "image-risk-assessment",
+          "name": "Image Risk Assessment",
+          "type": "stackedBar",
+          "visible": true,
+          "text": "Vulnerabilities found in scanned container images, grouped by severity.",
+          "headline": { "value": 1470, "label": "Total Vulnerabilities" },
+          "segments": [
+            { "label": "Critical", "value": 9, "color": "#7F1D1D" },
+            { "label": "High", "value": 150, "color": "#DC2626" },
+            { "label": "Medium", "value": 760, "color": "#F0932B" },
+            { "label": "Low", "value": 540, "color": "#F5C542" },
+            { "label": "Unknown", "value": 11, "color": "#B0B0B0" }
+          ]
+        },
+        {
+          "id": "image-security-issues",
+          "name": "Image Security Issues",
+          "type": "stackedBar",
+          "visible": true,
+          "text": "Images that contain at least one issue of each severity.",
+          "headline": { "value": 2, "label": "Total Images" },
+          "segments": [
+            { "label": "Critical", "value": 2, "color": "#7F1D1D" },
+            { "label": "High", "value": 2, "color": "#DC2626" },
+            { "label": "Medium", "value": 1, "color": "#F0932B" },
+            { "label": "Low", "value": 1, "color": "#F5C542" },
+            { "label": "Unknown", "value": 0, "color": "#B0B0B0" }
+          ]
+        },
+        {
+          "id": "image-registry-coverage",
+          "name": "Registry Coverage",
+          "type": "text",
+          "visible": false,
+          "text": "Share of connected registries that have been scanned in the selected time range. Sample text."
+        }
+      ]
+    },
+    {
+      "id": "ticket",
+      "title": "Ticket Dashboard",
+      "tabLabel": "Ticket",
+      "widgets": [
+        {
+          "id": "ticket-by-status",
+          "name": "Tickets by Status",
+          "type": "donut",
+          "visible": true,
+          "text": "Security tickets grouped by their current status.",
+          "segments": [
+            { "label": "Open", "value": 12, "color": "#E4572E" },
+            { "label": "In progress", "value": 5, "color": "#F5C542" },
+            { "label": "Resolved", "value": 31, "color": "#1FA463" }
+          ]
+        },
+        {
+          "id": "ticket-mttr",
+          "name": "Mean Time To Resolve",
+          "type": "text",
+          "visible": false,
+          "text": "Average time taken to resolve a security ticket. Sample text for the assignment."
+        }
+      ]
+    }
+  ]
+}

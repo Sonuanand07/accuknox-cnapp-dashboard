@@ -1,0 +1,44 @@
+{
+  "name": "accuknox-cnapp-dashboard",
+  "private": true,
+  "version": "1.0.0",
+  "description": "CNAPP dashboard: JSON-driven categories and widgets with add/remove, search and persistence (React + TypeScript + Redux Toolkit).",
+  "type": "module",
+  "engines": {
+    "node": ">=18"
+  },
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc --noEmit && vite build",
+    "preview": "vite preview --host",
+    "typecheck": "tsc --noEmit",
+    "lint": "eslint .",
+    "test": "vitest run",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@reduxjs/toolkit": "^2.2.7",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-redux": "^9.1.2"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.12.0",
+    "@testing-library/dom": "^10.4.0",
+    "@testing-library/jest-dom": "^6.5.0",
+    "@testing-library/react": "^16.0.1",
+    "@testing-library/user-event": "^14.5.2",
+    "@types/node": "^22.20.5",
+    "@types/react": "^18.3.11",
+    "@types/react-dom": "^18.3.1",
+    "@vitejs/plugin-react": "^4.3.2",
+    "eslint": "^9.12.0",
+    "eslint-plugin-react-hooks": "^5.1.0",
+    "globals": "^15.11.0",
+    "jsdom": "^25.0.1",
+    "typescript": "~5.6.3",
+    "typescript-eslint": "^8.8.1",
+    "vite": "^5.4.9",
+    "vitest": "^2.1.3"
+  }
+}
