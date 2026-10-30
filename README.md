@@ -4,7 +4,7 @@ A dashboard page built for the **AccuKnox Front-End Trainee assignment**. Catego
 
 Every default widget is populated with clearly labeled sample data; the dashboard does not connect to live cloud or security services.
 
-**Live demo:** Not deployed yet — follow the [deployment steps](#deploy) below.  ·  **Stack:** React 18 · TypeScript · Redux Toolkit · Vite · Vitest
+**Live demo:** https://accuknox-cnapp-dashboard-gamma.vercel.app/  .  ·  **Stack:** React 18 · TypeScript · Redux Toolkit · Vite · Vitest
 
 ## Assignment checklist
 
