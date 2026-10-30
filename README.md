@@ -116,24 +116,6 @@ src/
   utils/        search, id
 ```
 
-## Deploy
-
-The build uses relative asset paths, so the same `dist/` works on any static host and under a sub-path.
-
-### Option A: GitHub Pages (workflow included)
-
-1. Push the repo to GitHub (see below).
-2. **Settings → Pages → Build and deployment → Source: GitHub Actions**.
-3. Every push to `main` runs lint, tests and build, then publishes. Your site is `https://<username>.github.io/<repo>/`.
-
-### Option B: Vercel
-
-Import the repo at vercel.com/new. The Vite preset is detected automatically (build `npm run build`, output `dist`).
-
-### Option C: Netlify
-
-Import the repo (settings come from `netlify.toml`), or drag the `dist/` folder onto app.netlify.com/drop after `npm run build`.
-
 ### Push to GitHub
 
 ```bash
